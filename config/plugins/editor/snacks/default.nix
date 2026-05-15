@@ -3,10 +3,13 @@
     enable = true;
     settings = {
       bigfile.enable = true;
-      explorer.enable = true;
       input.enable = true;
-			notifier.enable = true;
-			picker.enable = true;
+      notifier.enable = true;
+      picker.enable = true;
+      animate.enable = true;
     };
   };
+  imports = [
+    ./explorer.nix
+  ];
 }

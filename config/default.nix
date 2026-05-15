@@ -6,5 +6,6 @@
 		./opts.nix
 
 		./plugins
+		./keymaps.nix
 	];
 }
