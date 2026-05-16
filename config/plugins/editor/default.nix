@@ -8,5 +8,6 @@
       ./sessions.nix
       ./which-key.nix
       ./bufferline.nix
+      ./harpoon.nix
   ];
 }

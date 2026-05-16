@@ -1,11 +1,11 @@
 {
-	imports = [
-		./theme.nix
+  imports = [
+    ./theme.nix
 
-		./globals.nix
-		./opts.nix
+    ./globals.nix
+    ./opts.nix
 
-		./plugins
-		./keymaps.nix
-	];
+    ./plugins
+    ./keymaps.nix
+  ];
 }
