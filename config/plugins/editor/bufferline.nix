@@ -1,22 +1,12 @@
-{
+{keyLib, ... }: {
   plugins.bufferline = {
     enable = true;
     settings = { };
   };
   keymaps = [
-    {
-      action = "<cmd>BufferLineCycleNext<cr>";
-      key = "<S-L>";
-      options = {
-        silent = true;
-      };
-    }
-    {
-      action = "<cmd>BufferLineCyclePrev<cr>";
-      key = "<S-H>";
-      options = {
-        silent = true;
-      };
-    }
+    (keyLib.base "<S-L>" "<cmd>BufferLineCycleNext<cr>")
+    (keyLib.base "<S-H>" "<cmd>BufferLineCyclePrev<cr>")
+    (keyLib.base "<leader>bo" "<cmd>BufferLineCloseOthers<cr>")
+    (keyLib.base "<leader>bP" "<cmd>BufferLineGroupClose ungroupped<cr>")
   ];
 }

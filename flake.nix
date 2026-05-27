@@ -3,48 +3,32 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    nixvim.url = "github:nix-community/nixvim";
-    harpoon-bufferline = {
-      url = "github:Tias-dev/harpoon-bufferline.nvim";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tias-nixpkgs = {
+      url = "github:Tias-dev/tias-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      flake-utils,
-      nixvim,
-      harpoon-bufferline,
-      ...
-    }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        harpoon-bufferline-plugin = (import harpoon-bufferline { inherit system; }).default;
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
+      perSystem = {inputs', ...}: let
         nixvimModule = {
-          module = import ./config;
-          extraSpecialArgs = {
-            # harpoon-bufferline = import harpoon-bufferline { inherit system; };
-            harpoon-bufferline = pkgs.vimUtils.buildVimPlugin {
-              name = "harpoon-bufferline";
-              src = pkgs.fetchFromGitHub {
-                owner = "Tias-dev";
-                repo = "harpoon-bufferline.nvim";
-                rev = "bfd96180f0ab196d0bae46e38bb8b89e4a02c8c5";
-                hash = "sha256-L7k7X5PAd+OcmeyeQKZV3NQbXnEgwf9ZvXrM1o+2Clc=";
-              };
-            };
-          };
+          module = inputs.import-tree ./config;
+          extraSpecialArgs = {inherit inputs'; keyLib = import ./utils/keylib.nix;};
         };
-        nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
-      in
-      {
+        nvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule nixvimModule;
+      in {
         packages.default = nvim;
-        devShells.default = pkgs.mkShell { };
-      }
-    );
+      };
+    };
 }
