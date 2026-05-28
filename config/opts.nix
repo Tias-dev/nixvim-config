@@ -6,5 +6,9 @@
     exrc = true;
     mouse = "";
     conceallevel = 0;
+    number = true;
+    scrolloff = 10;
+    relativenumber = true;
+    signcolumn = "number";
   };
 }

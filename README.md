@@ -9,7 +9,8 @@ In progress. TODO:
 
 - [x] globals
 - [x] opts
-- [ ] common editor config
+- [ ] code actions keymap
+- [x] common editor config
 - [ ] plugins
 - [ ] keymaps
 - [ ] language specific config

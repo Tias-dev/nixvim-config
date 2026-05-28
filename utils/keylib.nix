@@ -5,6 +5,7 @@ rec {
     options = {
       silent = true;
     };
+    mode = ["n" "x"];
   };
   baseDesc = key: action: desc: (base key action) // {options.desc = desc;};
 }
