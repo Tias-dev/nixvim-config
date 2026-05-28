@@ -3,23 +3,28 @@
     enable = true;
     settings = {
       sources.default = [
-	"lsp"
-	"snippets"
-	"buffer"
-	"path"
+        "lsp"
+        "path"
+        "snippets"
+        "buffer"
       ];
       keymap = {
-	preset = "default";
-	"<Tab>" = ["accept" "fallback"];
-	"<C-j>" = ["snippet_forward" "fallback"];
-	"<C-k>" = ["snippet_backward" "fallback"];
+        preset = "default";
+        "<Tab>" = ["accept" "fallback"];
+        "<C-j>" = ["snippet_forward" "fallback"];
+        "<C-k>" = ["snippet_backward" "fallback"];
+        "<S-k>" = ["scroll_documentation_up" "fallback"];
+        "<S-j>" = ["scroll_documentation_down" "fallback"];
       };
       completion = {
-	menu = {
-	  border = "rounded";
-	  draw.treesitter = ["lsp"];
-	};
-	documentation.window.border = "rounded";
+        menu = {
+          border = "rounded";
+          draw.treesitter = ["lsp"];
+        };
+        documentation = {
+          window.border = "rounded";
+          auto_show = true;
+        };
       };
       signature.enabled = true;
     };

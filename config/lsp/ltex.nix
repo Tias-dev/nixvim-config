@@ -1,5 +1,3 @@
 {
-  plugins.lsp.servers.ltex = {
-    enable = true;
-  };
+  plugins.lsp.servers.ltex.enable = true;
 }

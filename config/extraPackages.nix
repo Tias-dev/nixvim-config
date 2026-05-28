@@ -5,8 +5,9 @@
     clang-tools
     pyright
     ltex-ls
-    neocmakelsp
     lua-language-server
+    bash-language-server
+    cmake-language-server
 
     # formatters
     alejandra
