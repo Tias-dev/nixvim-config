@@ -54,7 +54,7 @@
           ]
           [
             "Restore last session"
-            ''lua require("persistence").load({last=true})''
+            ''lua require("persistence").load()''
             "s"
           ]
         ];
