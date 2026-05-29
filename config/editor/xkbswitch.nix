@@ -18,7 +18,6 @@
 	      -- set layout by id
 	      -- @param layout any it is value returned by get_current_layout function
 	      set_layout = function (layout)
-		print("None")
 		if not layout then layout = "0" end
 		vim.system({"niri", "msg", "action", "switch-layout", layout})
 	      end,
