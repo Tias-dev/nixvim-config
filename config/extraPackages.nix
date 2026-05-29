@@ -4,7 +4,7 @@
     nixd
     clang-tools
     pyright
-    ltex-ls
+    texlab
     lua-language-server
     bash-language-server
     cmake-language-server
