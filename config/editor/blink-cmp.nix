@@ -25,8 +25,15 @@
           window.border = "rounded";
           auto_show = true;
         };
+	list.selection = {
+	  preselect = true;
+	  auto_insert = false;
+	};
       };
-      signature.enabled = true;
+      signature = {
+	enabled = true;
+	window.border = "single";
+      };
     };
   };
 }

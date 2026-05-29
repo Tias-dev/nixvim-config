@@ -10,5 +10,7 @@
     scrolloff = 10;
     relativenumber = true;
     signcolumn = "number";
+    completeopt="noselect";
+    winborder="rounded";
   };
 }
