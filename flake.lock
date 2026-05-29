@@ -159,11 +159,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779809594,
-        "narHash": "sha256-ZA8UBcQR4kHCVj0wQNCvDAaS7NGCbtDRsXlepDfa64c=",
+        "lastModified": 1780052334,
+        "narHash": "sha256-Ycgp8BlbIyXheJgqEkn3l7GZ80VqYHibyEItRjYV6nk=",
         "owner": "Tias-dev",
         "repo": "tias-nixpkgs",
-        "rev": "c912ae34cf302301cb270c0a76f661d9e06e32bd",
+        "rev": "e80e689a6343d6559c793f38cb02597f1fa0f367",
         "type": "github"
       },
       "original": {
