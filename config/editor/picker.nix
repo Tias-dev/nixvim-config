@@ -12,5 +12,7 @@
     (baseDesc "<leader>sw" "<cmd>lua Snacks.picker.grep_word()<cr>" "Grep current word")
     (baseDesc "<leader>sd" "<cmd>lua Snacks.picker.diagnostics()<cr>" "Search diagnostics")
     (baseDesc "<leader>sD" "<cmd>lua Snacks.picker.diagnostics_buffer()<cr>" "Search buffer diagnostics")
+
+    (baseDesc "<leader>cs" "<cmd>lua Snacks.picker.lsp_symbols()<cr>" "Lsp symbols")
   ];
 }
