@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins.lsp.servers.nixd = {
     enable = true;
     cmd = ["nixd"];
@@ -13,4 +13,5 @@
       };
     };
   };
+  extraPackages = [pkgs.nixd];
 }

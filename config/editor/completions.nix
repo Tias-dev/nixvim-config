@@ -25,14 +25,14 @@
           window.border = "rounded";
           auto_show = true;
         };
-	list.selection = {
-	  preselect = true;
-	  auto_insert = false;
-	};
+        list.selection = {
+          preselect = true;
+          auto_insert = false;
+        };
       };
       signature = {
-	enabled = true;
-	window.border = "single";
+        enabled = true;
+        window.border = "single";
       };
     };
   };

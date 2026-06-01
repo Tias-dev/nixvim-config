@@ -1,7 +1,7 @@
-{keyLib, ... }: {
+{keyLib, ...}: {
   plugins.bufferline = {
     enable = true;
-    settings = { };
+    settings = {};
   };
   keymaps = with keyLib; [
     (base "<S-L>" "<cmd>BufferLineCycleNext<cr>")

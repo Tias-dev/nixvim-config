@@ -22,24 +22,25 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
-	pkgs,
-	inputs',
-	...
+        pkgs,
+        inputs',
+        ...
       }: let
-      nixvimModule = {
-	inherit pkgs;
-	module = inputs.import-tree ./config;
-	extraSpecialArgs = {
-	  inherit inputs';
-	  keyLib = import ./utils/keylib.nix;
-	};
-      };
-      nvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule nixvimModule;
+        nixvimModule = {
+          inherit pkgs;
+          module = inputs.import-tree ./config;
+          extraSpecialArgs = {
+            inherit inputs';
+            keyLib = import ./utils/keylib.nix;
+          };
+        };
+        nvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule nixvimModule;
       in {
-	packages.default = nvim;
-	devShells.default = pkgs.mkShellNoCC {
-	  packages = [nvim];
-	};
+        packages.default = nvim;
+        devShells.default = pkgs.mkShellNoCC {
+          packages = [nvim];
+        };
+        formatter = pkgs.alejandra;
       };
     };
 }

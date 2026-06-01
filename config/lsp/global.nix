@@ -52,12 +52,6 @@
           desc = "Previous Diagnostic";
         };
       };
-      extra = [
-        {
-          action.__raw = "vim.lsp.buf.format";
-          key = "<leader>cf";
-        }
-      ];
     };
   };
 }

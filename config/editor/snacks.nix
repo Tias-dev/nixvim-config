@@ -4,6 +4,6 @@
     settings = {
       bigfile.enable = true;
       scroll.enable = true;
-   };
+    };
   };
 }

@@ -1,3 +1,8 @@
 {
-  plugins.auto-save.enable = true;
+  plugins.auto-save = {
+    enable = true;
+    settings = {
+      debounce_delay = 5000;
+    };
+  };
 }

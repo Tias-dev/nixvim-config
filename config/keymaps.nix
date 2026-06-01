@@ -28,18 +28,18 @@
       action = "v:count == 0 ? 'gj' : 'j'";
       key = "j";
       options = {
-	silent = true;
-	noremap = true;
-	expr = true;
+        silent = true;
+        noremap = true;
+        expr = true;
       };
     }
     {
       action = "v:count == 0 ? 'gk' : 'k'";
       key = "k";
       options = {
-	silent = true;
-	noremap = true;
-	expr = true;
+        silent = true;
+        noremap = true;
+        expr = true;
       };
     }
     (keyLib.baseDesc "<leader><tab><tab>" "<cmd>tabnew<cr>" "New tab")

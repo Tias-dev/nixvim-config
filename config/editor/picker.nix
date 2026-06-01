@@ -5,7 +5,6 @@
     (baseDesc "<leader>fb" "<cmd>lua Snacks.picker.buffers()<cr>" "Find buffers")
     (baseDesc "<leader>fB" "<cmd>lua Snacks.picker.buffers({hidden = true, nofile = true})<cr>" "Find buffers (all)")
 
-
     (baseDesc "<leader>sc" "<cmd>lua Snacks.picker.commands()<cr>" "Search commands")
     (baseDesc "<leader>sC" "<cmd>lua Snacks.picker.command_history()<cr>" "Search command history")
     (baseDesc "<leader>sg" "<cmd>lua Snacks.picker.grep()<cr>" "Grep")
