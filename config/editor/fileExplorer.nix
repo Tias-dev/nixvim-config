@@ -1,8 +1,6 @@
 {keyLib, ...}: {
-  plugins.oil = {
-    enable = true;
-  };
+  plugins.mini.modules.files = {};
   keymaps = [
-    (keyLib.baseDesc "<leader>e" "<cmd>Oil<cr>" "Open explorer")
+    (keyLib.baseDesc "<leader>e" "<cmd>lua MiniFiles.open()<cr>" "Open explorer")
   ];
 }
