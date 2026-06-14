@@ -6,6 +6,7 @@
       pairs = {};
       ai = {};
       icons = {};
+      surround = {};
     };
   };
 }
