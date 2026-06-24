@@ -3,7 +3,7 @@
     enable = true;
     cmd = [
       "clangd"
-      "--background-index=false"
+      "--background-index=0"
       "--clang-tidy"
       "--header-insertion=iwyu"
       "--completion-style=detailed"
