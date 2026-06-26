@@ -37,6 +37,14 @@
         nvim = inputs'.nixvim.legacyPackages.makeNixvimWithModule nixvimModule;
       in {
         packages.default = nvim;
+        packages.bundable-nvim = nvim.overrideAttrs (_: _: {
+          pname = "neovim";
+          version = "1.0.0";
+        });
+        apps.default = {
+          type = "app";
+          program = "${nvim}/bin/nvim";
+        };
         devShells.default = pkgs.mkShellNoCC {
           packages = [nvim];
         };
