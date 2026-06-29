@@ -7,6 +7,7 @@
       ai = {};
       icons = {};
       surround = {};
+      splitjoin = {};
     };
   };
 }
