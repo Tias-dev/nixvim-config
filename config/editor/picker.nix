@@ -5,6 +5,9 @@
     (baseDesc "<leader>fb" "<cmd>lua Snacks.picker.buffers()<cr>" "Find buffers")
     (baseDesc "<leader>fB" "<cmd>lua Snacks.picker.buffers({hidden = true, nofile = true})<cr>" "Find buffers (all)")
 
+    (baseDesc "<leader>fr" "<cmd>lua Snacks.picker.recent({filter = {cwd = true}})<cr>" "Recent (cwd)")
+    (baseDesc "<leader>fR" "<cmd>lua Snacks.picker.recent()<cr>" "Recent")
+
     (baseDesc "<leader>sc" "<cmd>lua Snacks.picker.commands()<cr>" "Search commands")
     (baseDesc "<leader>sC" "<cmd>lua Snacks.picker.command_history()<cr>" "Search command history")
     (baseDesc "<leader>sk" "<cmd>lua Snacks.picker.keymaps()<cr>" "Search keymaps")
