@@ -13,6 +13,11 @@
     (baseDesc "<leader>sD" "<cmd>lua Snacks.picker.diagnostics_buffer()<cr>" "Search buffer diagnostics")
     (baseDesc "<leader>sk" "<cmd>lua Snacks.picker.diagnostics_buffer()<cr>" "Search buffer diagnostics")
 
-    (baseDesc "<leader>cs" "<cmd>lua Snacks.picker.lsp_symbols()<cr>" "Lsp symbols")
+    (baseDesc "<leader>ss" "<cmd>lua Snacks.picker.lsp_symbols()<cr>" "Lsp symbols")
+    (baseDesc "<leader>sS" "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>" "Lsp symbols")
+    (baseDesc "<leader>sS" "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>" "Lsp symbols")
+
+    (baseDesc "<leader>sb" "<cmd>lua Snacks.picker.lines()<cr>" "Lsp symbols")
+    (baseDesc "<leader>sB" "<cmd>lua Snacks.picker.grep_buffers()<cr>" "Lsp symbols")
   ];
 }
