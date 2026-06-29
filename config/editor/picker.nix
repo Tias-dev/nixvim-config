@@ -17,7 +17,7 @@
     (baseDesc "<leader>sS" "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>" "Lsp symbols")
     (baseDesc "<leader>sS" "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>" "Lsp symbols")
 
-    (baseDesc "<leader>sb" "<cmd>lua Snacks.picker.lines()<cr>" "Lsp symbols")
-    (baseDesc "<leader>sB" "<cmd>lua Snacks.picker.grep_buffers()<cr>" "Lsp symbols")
+    (baseDesc "<leader>sb" "<cmd>lua Snacks.picker.lines()<cr>" "Pick buffer lines")
+    (baseDesc "<leader>sB" "<cmd>lua Snacks.picker.grep_buffers()<cr>" "Grep opened buffers")
   ];
 }
