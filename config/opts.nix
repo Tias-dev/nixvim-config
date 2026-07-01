@@ -1,8 +1,10 @@
 {
   opts = {
+    expandtab = true;
     softtabstop = 2;
     shiftwidth = 2;
-    expandtab = false;
+    tabstop = 2;
+
     exrc = true;
     mouse = "";
     conceallevel = 0;
