@@ -49,7 +49,7 @@
           ]
           [
             " Recent Files"
-            ''lua require("snacks").picker.recent()''
+            ''lua require("snacks").picker.recent({filter = {cwd = true}})''
             "r"
           ]
           [

@@ -10,7 +10,7 @@
         lua = ["stylua"];
         cpp = ["clang_format"];
         c = cpp;
-        python = ["isort" "black"];
+        python = ["isort" "black" "autopep8Experimental"];
         nix = ["alejandra"];
         latex = ["tex-fmt"];
         "_" = [
@@ -25,6 +25,13 @@
       format_after_save = {
         lsp_format = "fallback";
       };
+      formatters = {
+        autopep8Experimental = {
+          "inherit" = false;
+          command = "autopep8";
+          args = ["--experimental" "$FILENAME"];
+        };
+      };
     };
   };
 
@@ -33,6 +40,7 @@
   ];
 
   extraPackages = with pkgs; [
+    python3Packages.autopep8
     stylua
     clang-tools
     isort

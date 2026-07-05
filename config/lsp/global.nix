@@ -28,13 +28,13 @@
           action = "hover";
           desc = "Hover";
         };
-        "<leader>cw" = {
-          action = "workspace_symbol";
-          desc = "Workspace Symbol";
-        };
         "<leader>cr" = {
           action = "rename";
           desc = "Rename";
+        };
+        "<leader>ca" = {
+          action = "code_action";
+          desc = "Code actions";
         };
       };
 

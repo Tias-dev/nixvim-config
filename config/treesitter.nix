@@ -1,4 +1,5 @@
 {config, ...}: {
+  plugins.treesitter-context.enable = true;
   plugins.treesitter = {
     enable = true;
     highlight.enable = true;
