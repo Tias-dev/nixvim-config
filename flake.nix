@@ -11,6 +11,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    harpoon-bufferline = {
+      url = "github:Tias-dev/harpoon-bufferline.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tias-nixpkgs = {
       url = "github:Tias-dev/tias-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       bigfile.enable = true;
-      scroll.enable = true;
+      indent.enable = true;
     };
   };
 }

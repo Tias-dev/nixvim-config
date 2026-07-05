@@ -4,7 +4,7 @@
     settings = {};
   };
   extraPlugins = [
-    inputs'.tias-nixpkgs.packages.harpoon-bufferline
+    inputs'.harpoon-bufferline.packages.default
   ];
   extraConfigLua = ''
     require("harpoon-bufferline").setup({})
