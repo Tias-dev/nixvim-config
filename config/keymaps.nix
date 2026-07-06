@@ -1,49 +1,22 @@
-{keyLib, ...}: {
-  keymaps = [
+let
+  escapeKeymap = k1: k2: [
     {
       action = "<esc>";
-      key = "vn";
+      key = k1 + k2;
       options = {silent = true;};
       mode = ["i"];
     }
     {
       action = "<esc>";
-      key = "мт";
+      key = k2 + k1;
       options = {silent = true;};
       mode = ["i"];
     }
-    {
-      action = "<esc>";
-      key = "VN";
-      options = {silent = true;};
-      mode = ["i"];
-    }
-    {
-      action = "<esc>";
-      key = "МТ";
-      options = {silent = true;};
-      mode = ["i"];
-    }
-    {
-      action = "v:count == 0 ? 'gj' : 'j'";
-      key = "j";
-      options = {
-        silent = true;
-        noremap = true;
-        expr = true;
-      };
-    }
-    {
-      action = "v:count == 0 ? 'gk' : 'k'";
-      key = "k";
-      options = {
-        silent = true;
-        noremap = true;
-        expr = true;
-      };
-    }
-    (keyLib.baseDesc "<leader><tab><tab>" "<cmd>tabnew<cr>" "New tab")
-    (keyLib.baseDesc "<leader><tab>o" "<cmd>tabonly<cr>" "Close other tabs")
-    (keyLib.baseDesc "<leader><tab>d" "<cmd>tabclose<cr>" "Close current tabs")
   ];
+in {
+  keymaps =
+    (escapeKeymap "v" "n")
+    ++ (escapeKeymap "V" "N")
+    ++ (escapeKeymap "м" "т")
+    ++ (escapeKeymap "М" "Т");
 }
