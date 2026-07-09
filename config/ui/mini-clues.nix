@@ -43,12 +43,36 @@
         (lib.nixvim.mkRaw "require(\"mini.clue\").gen_clues.registers()")
         (lib.nixvim.mkRaw "require(\"mini.clue\").gen_clues.windows()")
         (lib.nixvim.mkRaw "require(\"mini.clue\").gen_clues.z()")
-        {mode = "n"; keys = "<leader>b"; desc = "+Buffers";}
-        {mode = "n"; keys = "<leader>c"; desc = "+Code";}
-        {mode = "n"; keys = "<leader>f"; desc = "+Find(files)";}
-        {mode = "n"; keys = "<leader>s"; desc = "+Search(Code)";}
-        {mode = "n"; keys = "<leader>h"; desc = "+Pinned buffers";}
-        {mode = "n"; keys = "<leader><Tab>"; desc = "+Tabs";}
+        {
+          mode = "n";
+          keys = "<leader>b";
+          desc = "+Buffers";
+        }
+        {
+          mode = "n";
+          keys = "<leader>c";
+          desc = "+Code";
+        }
+        {
+          mode = "n";
+          keys = "<leader>f";
+          desc = "+Find(files)";
+        }
+        {
+          mode = "n";
+          keys = "<leader>s";
+          desc = "+Search(Code)";
+        }
+        {
+          mode = "n";
+          keys = "<leader>h";
+          desc = "+Pinned buffers";
+        }
+        {
+          mode = "n";
+          keys = "<leader><Tab>";
+          desc = "+Tabs";
+        }
       ];
     };
   };
