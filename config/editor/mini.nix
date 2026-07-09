@@ -7,7 +7,6 @@
       ai = {};
       icons = {};
       surround = {};
-      animate = {};
       move = {};
       splitjoin = {};
     };

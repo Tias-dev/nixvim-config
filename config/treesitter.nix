@@ -3,6 +3,7 @@
   plugins.treesitter = {
     enable = true;
     highlight.enable = true;
+    indent.enable = true;
     grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
       bash
       json

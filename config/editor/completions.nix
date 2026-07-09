@@ -1,39 +1,65 @@
 {
-  plugins.blink-cmp = {
-    enable = true;
-    settings = {
-      sources.default = [
-        "lsp"
-        "path"
-        "snippets"
-        "buffer"
-      ];
-      keymap = {
-        preset = "default";
-        "<Tab>" = ["accept" "fallback"];
-        "<C-j>" = ["snippet_forward" "fallback"];
-        "<C-k>" = ["snippet_backward" "fallback"];
-        "<S-k>" = ["scroll_documentation_up" "fallback"];
-        "<S-j>" = ["scroll_documentation_down" "fallback"];
-      };
-      completion = {
-        menu = {
-          border = "rounded";
-          draw.treesitter = ["lsp"];
+  lib,
+  config,
+  ...
+}: {
+  options = {
+    completion.blink-cmp.enable = lib.mkEnableOption "blink-cmp";
+    completion.mini-completion.enable = lib.mkEnableOption "mini-completion";
+  };
+  config = {
+    completion.blink-cmp.enable = lib.mkDefault (!config.completion.mini-completion.enable && true);
+    plugins.blink-cmp = lib.optionalAttrs config.completion.blink-cmp.enable {
+      enable = true;
+      settings = {
+        appearance = {
+          use_nvim_cmp_as_default = true;
+          nerd_font_variant = "mono";
         };
-        documentation = {
-          window.border = "rounded";
-          auto_show = true;
+        sources = {
+          default = [
+            "lsp"
+            "snippets"
+            "path"
+            "buffer"
+          ];
         };
-        list.selection = {
-          preselect = true;
-          auto_insert = false;
+        keymap = {
+          preset = "default";
+          "<Tab>" = ["accept" "fallback"];
+          "<C-j>" = ["snippet_forward" "fallback"];
+          "<C-k>" = ["snippet_backward" "fallback"];
+          "<S-k>" = ["scroll_documentation_up" "fallback"];
+          "<S-j>" = ["scroll_documentation_down" "fallback"];
+        };
+        completion = {
+          trigger = {
+            show_on_keyword = true;
+            show_on_trigger_character = true;
+          };
+          menu = {
+            auto_show = true;
+            auto_show_delay_ms = 0;
+            border = "rounded";
+            draw.treesitter = ["lsp"];
+          };
+          documentation = {
+            window.border = "rounded";
+            auto_show = true;
+          };
+          list.selection = {
+            preselect = true;
+            auto_insert = true;
+          };
+        };
+        signature = {
+          enabled = true;
+          window.border = "single";
         };
       };
-      signature = {
-        enabled = true;
-        window.border = "single";
-      };
+    };
+    plugins.mini-completion = lib.optionalAttrs config.completion.mini-completion.enable {
+      enable = true;
     };
   };
 }
