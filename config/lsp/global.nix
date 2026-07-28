@@ -1,16 +1,33 @@
 {
+  # delete default grr, gri, gra etc lsp keymaps
+  extraConfigLuaPre = ''
+    for _, letter in ipairs({"n", "x", "r", "a", "i", "t"}) do
+      vim.keymap.del("n", "gr"..letter)
+    end
+    vim.keymap.del("x", "gra")
+  '';
   plugins.lsp = {
     enable = true;
     keymaps = {
       silent = true;
+      diagnostic = {
+        "<leader>cd" = {
+          action = "open_float";
+          desc = "Line Diagnostics";
+        };
+        "[d" = {
+          action = "goto_next";
+          desc = "Next Diagnostic";
+        };
+        "]d" = {
+          action = "goto_prev";
+          desc = "Previous Diagnostic";
+        };
+      };
       lspBuf = {
         gd = {
           action = "definition";
           desc = "Goto Definition";
-        };
-        gr = {
-          action = "references";
-          desc = "Goto References";
         };
         gD = {
           action = "declaration";
@@ -35,21 +52,6 @@
         "<leader>ca" = {
           action = "code_action";
           desc = "Code actions";
-        };
-      };
-
-      diagnostic = {
-        "<leader>cd" = {
-          action = "open_float";
-          desc = "Line Diagnostics";
-        };
-        "[d" = {
-          action = "goto_next";
-          desc = "Next Diagnostic";
-        };
-        "]d" = {
-          action = "goto_prev";
-          desc = "Previous Diagnostic";
         };
       };
     };

@@ -22,5 +22,6 @@
 
     (baseDesc "<leader>sb" "<cmd>lua Snacks.picker.lines()<cr>" "Pick buffer lines")
     (baseDesc "<leader>sB" "<cmd>lua Snacks.picker.grep_buffers()<cr>" "Grep opened buffers")
+    (baseDesc "gr" "<cmd>lua Snacks.picker.lsp_references()<cr>" "Goto references")
   ];
 }
