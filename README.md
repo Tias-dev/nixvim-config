@@ -25,3 +25,5 @@ In progress. TODO:
 | tex | tex.enable | false |
 | yaml | yaml.enable | false |
 | lua | yaml.enable | false |
+
+Hint: You can set `all-langs.enable = true` to enable all configured languages

@@ -15,26 +15,37 @@
       enable = true;
       settings =
         {
-          formatters_by_ft = rec {
-            lua = ["stylua"];
-            cpp = ["clang_format"];
-            c = cpp;
-            python = [
-              "isort"
-              "black"
-              (
-                if config.autopep8.experimental.enable
-                then "autopep8Experimental"
-                else "autopep8"
-              )
-            ];
-            nix = ["alejandra"];
-            latex = ["tex-fmt"];
-            "_" = [
-              "trim_whitespace"
-              "trim_newlines"
-            ];
-          };
+          formatters_by_ft =
+            rec {
+              "_" = [
+                "trim_whitespace"
+                "trim_newlines"
+              ];
+            }
+            // (lib.optionalAttrs (config.cpp.enable || config.all-langs.enable) rec {
+              cpp = ["clang_format"];
+              c = cpp;
+            })
+            // (lib.optionalAttrs (config.python.enable || config.all-langs.enable) rec {
+              python = [
+                "isort"
+                "black"
+                (
+                  if config.autopep8.experimental.enable
+                  then "autopep8Experimental"
+                  else "autopep8"
+                )
+              ];
+            })
+            // (lib.optionalAttrs (config.nix.enable || config.all-langs.enable) rec {
+              nix = ["alejandra"];
+            })
+            // (lib.optionalAttrs (config.tex.enable || config.all-langs.enable) rec {
+              latex = ["tex-fmt"];
+            })
+            // (lib.optionalAttrs (config.lua.enable || config.all-langs.enable) rec {
+              lua = ["stylua"];
+            });
           formatters = {
             autopep8Experimental = {
               "inherit" = false;
@@ -58,14 +69,12 @@
       (keyLib.baseDesc "<leader>cf" ''<cmd>lua require("conform").format()<cr>'' "Format code")
     ];
 
-    extraPackages = with pkgs; [
-      python3Packages.autopep8
-      stylua
-      clang-tools
-      isort
-      black
-      alejandra
-      tex-fmt
-    ];
+    extraPackages = with pkgs; (
+      (lib.optionals (config.python.enable || config.all-langs.enable) [isort black python3Packages.autopep8])
+      ++ (lib.optional (config.lua.enable || config.all-langs.enable) stylua)
+      ++ (lib.optional (config.cpp.enable || config.all-langs.enable) clang-tools)
+      ++ (lib.optional (config.nix.enable || config.all-langs.enable) alejandra)
+      ++ (lib.optional (config.tex.enable || config.all-langs.enable) tex-fmt)
+    );
   };
 }
