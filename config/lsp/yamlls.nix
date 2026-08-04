@@ -1,6 +1,6 @@
 {lib, pkgs, config, ...}: {
-  options.yamlls.enable = lib.mkEnableOption "Yaml support";
-  config = lib.mkIf config.yamlls.enable {
+  options.yaml.enable = lib.mkEnableOption "Yaml support";
+  config = lib.mkIf config.yaml.enable {
     plugins.lsp.servers.yamlls = {
       enable = true;
     };

@@ -9,8 +9,19 @@ In progress. TODO:
 
 - [x] globals
 - [x] opts
-- [ ] code actions keymap
+- [x] code actions keymap
 - [x] common editor config
-- [ ] plugins
-- [ ] keymaps
-- [ ] language specific config
+- [x] plugins
+- [x] keymaps
+- [x] language specific config
+
+## Languages
+
+| Language | Enable option | default value | 
+|----------|---------------|---------------|
+| C++ | cpp.enable | true |
+| python | python.enable | true |
+| nix | nix.enable | true |
+| tex | tex.enable | false |
+| yaml | yaml.enable | false |
+| lua | yaml.enable | false |
