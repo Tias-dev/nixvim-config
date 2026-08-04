@@ -8,7 +8,7 @@
     type = lib.types.bool;
     default = true;
   };
-  config = lib.mkIf config.nix.enable {
+  config = lib.mkIf ( config.nix.enable || config.all-langs.enable ) {
     plugins.lsp.servers.nixd = {
       enable = true;
       cmd = ["nixd"];

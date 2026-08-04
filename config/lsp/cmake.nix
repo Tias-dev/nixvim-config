@@ -9,7 +9,7 @@
     default = true;
   };
   config =
-    lib.mkIf config.cmake.enable
+    lib.mkIf ( config.cmake.enable || config.all-langs.enable )
     {
       plugins.lsp.servers.cmake.enable = true;
       extraPackages = [pkgs.cmake-language-server];
