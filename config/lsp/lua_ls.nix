@@ -1,4 +1,14 @@
-{pkgs, ...}: {
-  plugins.lsp.servers.lua_ls.enable = true;
-  extraPackages = [pkgs.lua-language-server];
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  options.lua.enable = lib.mkEnableOption "lua support";
+  config =
+    lib.mkIf config.lua.enable
+    {
+      plugins.lsp.servers.lua_ls.enable = true;
+      extraPackages = [pkgs.lua-language-server];
+    };
 }

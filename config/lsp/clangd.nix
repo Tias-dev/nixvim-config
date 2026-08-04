@@ -4,11 +4,17 @@
   config,
   ...
 }: {
-  options.clangd.disable-indexing = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
+  options.clangd = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+    disable-indexing = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
-  config = {
+  config = lib.mkIf config.clangd.enable {
     plugins.lsp.servers.clangd = {
       enable = true;
       cmd =

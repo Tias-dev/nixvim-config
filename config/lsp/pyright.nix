@@ -1,4 +1,15 @@
-{pkgs, ...}: {
-  plugins.lsp.servers.pyright.enable = true;
-  extraPackages = [pkgs.pyright];
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  options.python.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+  };
+  config = lib.mkIf config.python.enable {
+    plugins.lsp.servers.pyright.enable = true;
+    extraPackages = [pkgs.pyright];
+  };
 }
