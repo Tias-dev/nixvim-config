@@ -15,6 +15,10 @@
       type = lib.types.bool;
       default = false;
     };
+    disable-auto-import = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
   config = lib.mkIf ( config.cpp.enable || config.all-langs.enable ) {
     plugins.lsp.servers.clangd = {
@@ -23,10 +27,10 @@
         [
           "clangd"
           "--clang-tidy"
-          "--header-insertion=iwyu"
           "--completion-style=detailed"
           "--function-arg-placeholders"
           "--fallback-style=llvm"
+          "--header-insertion=${if config.clangd.disable-auto-import then "never" else "iwyu"}"
         ]
         ++ (lib.optional config.clangd.disable-indexing "--background-index=0");
     };
