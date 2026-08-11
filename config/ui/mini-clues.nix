@@ -73,6 +73,11 @@
           keys = "<leader><Tab>";
           desc = "+Tabs";
         }
+        {
+          mode = "n";
+          keys = "<leader>n";
+          desc = "+Neogen";
+        }
       ];
     };
   };
