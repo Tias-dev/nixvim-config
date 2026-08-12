@@ -1,10 +1,10 @@
 {
   opts = {
     expandtab = true;
-    softtabstop = 2;
-    shiftwidth = 2;
+    softtabstop = 4;
+    shiftwidth = 4;
     shiftround = true;
-    tabstop = 2;
+    tabstop = 4;
     smartindent = true;
 
     conceallevel = 2;
