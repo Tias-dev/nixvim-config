@@ -20,7 +20,7 @@
       default = false;
     };
   };
-  config = lib.mkIf ( config.cpp.enable || config.all-langs.enable ) {
+  config = lib.mkIf (config.cpp.enable || config.all-langs.enable) {
     plugins.lsp.servers.clangd = {
       enable = true;
       cmd =
@@ -30,7 +30,11 @@
           "--completion-style=detailed"
           "--function-arg-placeholders"
           "--fallback-style=llvm"
-          "--header-insertion=${if config.clangd.disable-auto-import then "never" else "iwyu"}"
+          "--header-insertion=${
+            if config.clangd.disable-auto-import
+            then "never"
+            else "iwyu"
+          }"
         ]
         ++ (lib.optional config.clangd.disable-indexing "--background-index=0");
     };
