@@ -1,7 +1,7 @@
 {lib, ...}: {
   options.all-langs.enable = lib.mkEnableOption "All languages support";
   config = {
-    # delete default grr, gri, gra etc lsp keymap s
+    # delete default grr, gri, gra etc lsp keymaps
     extraConfigLuaPre = ''
       for _, letter in ipairs({"n", "x", "r", "a", "i", "t"}) do
         vim.keymap.del("n", "gr"..letter)
@@ -13,7 +13,7 @@
       keymaps = {
         silent = true;
         diagnostic = {
-          "<leader>cd" = {
+          "<leader>cl" = {
             action = "open_float";
             desc = "Line Diagnostics";
           };
