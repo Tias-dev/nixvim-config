@@ -1,5 +1,10 @@
 {config, ...}: {
-  plugins.treesitter-context.enable = true;
+  plugins.treesitter-context = {
+    enable = true;
+    settings = {
+      max_lines = 10;
+    };
+  };
   plugins.treesitter = {
     enable = true;
     highlight.enable = true;
