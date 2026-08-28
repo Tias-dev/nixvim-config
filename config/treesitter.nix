@@ -26,7 +26,7 @@
       latex
     ];
   };
-  files."after/queries/cpp/indents.scm" = lib.mkIf config.cpp.indent-namespace /*treesitter*/ ''
+  extraFiles."after/queries/cpp/indents.scm".text = lib.mkIf config.cpp.indent-namespace /*treesitter*/ ''
     ; extends
 
     (namespace_definition) @indent.begin
