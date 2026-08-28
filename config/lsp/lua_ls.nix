@@ -4,7 +4,6 @@
   config,
   ...
 }: {
-  options.lua.enable = lib.mkEnableOption "lua support";
   config =
     lib.mkIf (config.lua.enable || config.all-langs.enable)
     {

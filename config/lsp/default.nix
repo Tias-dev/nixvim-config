@@ -1,5 +1,4 @@
 {lib, ...}: {
-  options.all-langs.enable = lib.mkEnableOption "All languages support";
   config = {
     # delete default grr, gri, gra etc lsp keymaps
     extraConfigLuaPre = ''

@@ -4,12 +4,6 @@
   config,
   ...
 }: {
-  options.cpp = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-    };
-  };
   options.clangd = {
     disable-indexing = lib.mkOption {
       type = lib.types.bool;
