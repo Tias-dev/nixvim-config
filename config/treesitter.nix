@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   plugins.treesitter-context = {
     enable = true;
     settings = {
@@ -26,9 +30,15 @@
       latex
     ];
   };
-  extraFiles."after/queries/cpp/indents.scm".text = lib.mkIf config.cpp.indent-namespace /*treesitter*/ ''
-    ; extends
+  extraFiles = lib.mkIf config.cpp.indent-namespace {
+    "after/queries/cpp/indents.scm".text =
+      /*
+      treesitter
+      */
+      ''
+        ; extends
 
-    (namespace_definition) @indent.begin
-  '';
+        (namespace_definition) @indent.begin
+      '';
+  };
 }
