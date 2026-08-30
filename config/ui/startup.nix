@@ -1,19 +1,19 @@
 {lib, ...}: {
   plugins.alpha = {
     enable = true;
-    # lazyLoad = {
-    #   settings = {
-    #     enabled.__raw =
-    #       /*
-    #       lua
-    #       */
-    #       ''
-    #         function()
-    #           return not vim.wo.diff
-    #         end
-    #       '';
-    #   };
-    # };
+    lazyLoad = {
+      settings = {
+        enabled.__raw =
+          /*
+          lua
+          */
+          ''
+            function()
+              return not vim.wo.diff
+            end
+          '';
+      };
+    };
     settings = {
       layout = [
         {
@@ -39,64 +39,39 @@
         }
         {
           type = "padding";
-          val = 2;
+          val = 4;
         }
         {
           type = "group";
-          val = [
-            {
-              on_press = lib.nixvim.mkRaw "function() vim.cmd[[ene]] end";
-              opts = {
-                shortcut = "n";
-              };
+          opts.spacing = 1;
+          val = let
+            keybind =  key: desc: strActionFunc: 
+              rec {
+              on_press = lib.nixvim.mkRaw strActionFunc;
               type = "button";
-              val = "  New file";
-            }
-            {
-              on_press = lib.nixvim.mkRaw "function() require('snacks').picker.files() end";
+              val = desc;
               opts = {
-                shortcut = "f";
+                shortcut = key;
+                align_shortcut = "right";
+                hl_shortcut = "Keyword";
+                cursor = 3;
+                width = 50;
+                position = "center";
+                keymap = ["n" key on_press {silent = true; noremap = true;}];
               };
-              type = "button";
-              val = " Find File";
-            }
-            {
-              on_press = lib.nixvim.mkRaw "function() require('snacks').picker.grep() end";
-              opts = {
-                shortcut = "g";
-              };
-              type = "button";
-              val = "󰍉 Find Word";
-            }
-            {
-              on_press = lib.nixvim.mkRaw "function() require('snacks').picker.recent({filter = {cwd = true}}) end";
-              opts = {
-                shortcut = "r";
-              };
-              type = "button";
-              val = " Recent Files";
-            }
-            {
-              on_press = lib.nixvim.mkRaw "function() require('persistence').load() end";
-              opts = {
-                shortcut = "s";
-              };
-              type = "button";
-              val = "Restore last session";
-            }
-            {
-              on_press = lib.nixvim.mkRaw "function() vim.cmd[[qa]] end";
-              opts = {
-                shortcut = "q";
-              };
-              type = "button";
-              val = "󰩈 Quit Neovim";
-            }
+            };
+            in [
+            (keybind "n" "  New file" "function() vim.cmd[[ene]] end")
+            (keybind "f" "  Find File" "function() require('snacks').picker.files() end")
+            (keybind "g" "󰍉  Find Word" "function() require('snacks').picker.grep() end")
+            (keybind "r" "  Recent Files" "function() require('snacks').picker.recent({filter = {cwd = true}}) end")
+            (keybind "s" "  Restore last session" "function() require('persistence').load() end")
+            (keybind "q" "󰩈  Quit Neovim" "function() vim.cmd[[qa]] end")
           ];
         }
         {
           type = "padding";
-          val = 2;
+          val = 4;
         }
         {
           opts = {
