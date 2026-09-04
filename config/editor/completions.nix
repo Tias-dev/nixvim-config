@@ -8,12 +8,12 @@
     completion.mini-completion.enable = lib.mkEnableOption "mini-completion";
   };
   config = {
-    completion.blink-cmp.enable = lib.mkDefault (!config.completion.mini-completion.enable && true);
+    completion.blink-cmp.enable = lib.mkDefault (!config.completion.mini-completion.enable);
     plugins.blink-cmp = lib.optionalAttrs config.completion.blink-cmp.enable {
       enable = true;
       settings = {
         appearance = {
-          use_nvim_cmp_as_default = true;
+          # use_nvim_cmp_as_default = true;
           nerd_font_variant = "mono";
         };
         sources = {
@@ -23,6 +23,15 @@
             "path"
             "buffer"
           ];
+          providers = {
+            lsp = {
+              timeout_ms = 10;
+            };
+            path = {
+              min_keyword_length = 0;
+              score_offset = 3;
+            };
+          };
         };
         keymap = {
           preset = "default";
@@ -36,7 +45,9 @@
           trigger = {
             show_on_keyword = true;
             show_on_trigger_character = true;
+            show_on_backspace_in_keyword = true;
           };
+          keyword.range = "full";
           menu = {
             auto_show = true;
             auto_show_delay_ms = 0;
