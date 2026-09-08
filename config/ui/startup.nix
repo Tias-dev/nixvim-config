@@ -45,8 +45,7 @@
           type = "group";
           opts.spacing = 1;
           val = let
-            keybind =  key: desc: strActionFunc: 
-              rec {
+            keybind = key: desc: strActionFunc: rec {
               on_press = lib.nixvim.mkRaw strActionFunc;
               type = "button";
               val = desc;
@@ -57,10 +56,18 @@
                 cursor = 3;
                 width = 50;
                 position = "center";
-                keymap = ["n" key on_press {silent = true; noremap = true;}];
+                keymap = [
+                  "n"
+                  key
+                  on_press
+                  {
+                    silent = true;
+                    noremap = true;
+                  }
+                ];
               };
             };
-            in [
+          in [
             (keybind "n" "  New file" "function() vim.cmd[[ene]] end")
             (keybind "f" "  Find File" "function() require('snacks').picker.files() end")
             (keybind "g" "󰍉  Find Word" "function() require('snacks').picker.grep() end")
