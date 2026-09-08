@@ -8,5 +8,5 @@ rec {
     mode = ["n" "x"];
   };
   baseDesc = key: action: desc: (base key action) // {options.desc = desc;};
-  baseSilent = key: action: (base key action) // {options.silent = true;};
+  baseExpr = key: action: (base key action) // {options.silent = true; options.expr=true;};
 }
