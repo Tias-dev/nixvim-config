@@ -16,7 +16,7 @@
       settings =
         {
           formatters_by_ft =
-            rec {
+            {
               "_" = [
                 "trim_whitespace"
                 "trim_newlines"
@@ -26,7 +26,7 @@
               cpp = ["clang_format"];
               c = cpp;
             })
-            // (lib.optionalAttrs (config.python.enable || config.all-langs.enable) rec {
+            // (lib.optionalAttrs (config.python.enable || config.all-langs.enable) {
               python = [
                 "isort"
                 "black"
@@ -37,15 +37,29 @@
                 )
               ];
             })
-            // (lib.optionalAttrs (config.nix.enable || config.all-langs.enable) rec {
+            // (lib.optionalAttrs (config.nix.enable || config.all-langs.enable) {
               nix = ["alejandra"];
             })
-            // (lib.optionalAttrs (config.tex.enable || config.all-langs.enable) rec {
+            // (lib.optionalAttrs (config.tex.enable || config.all-langs.enable) {
               latex = ["tex-fmt"];
             })
-            // (lib.optionalAttrs (config.lua.enable || config.all-langs.enable) rec {
+            // (lib.optionalAttrs (config.lua.enable || config.all-langs.enable) {
               lua = ["stylua"];
-            });
+            })
+            // rec {
+              json = ["prettier"];
+              yaml = json;
+              xml = json;
+            }
+            // rec {
+              xml = ["prettier"];
+              javascript = xml;
+              javascriptreact = xml;
+              typescript = xml;
+              typescriptreact = xml;
+              css = xml;
+              html = xml;
+            };
           formatters = {
             autopep8Experimental = {
               "inherit" = false;
@@ -70,7 +84,8 @@
     ];
 
     extraPackages = with pkgs; (
-      (lib.optionals (config.python.enable || config.all-langs.enable) [isort black python3Packages.autopep8])
+      [prettier]
+      ++ (lib.optionals (config.python.enable || config.all-langs.enable) [isort black python3Packages.autopep8])
       ++ (lib.optional (config.lua.enable || config.all-langs.enable) stylua)
       ++ (lib.optional (config.cpp.enable || config.all-langs.enable) clang-tools)
       ++ (lib.optional (config.nix.enable || config.all-langs.enable) alejandra)
