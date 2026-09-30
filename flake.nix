@@ -11,15 +11,13 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    harpoon-bufferline = {
-      url = "github:Tias-dev/harpoon-bufferline.nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     tias-nixpkgs = {
       url = "github:Tias-dev/tias-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    import-tree.url = "github:vic/import-tree";
+    import-tree = {
+      url = "github:vic/import-tree";
+    };
   };
 
   outputs = {flake-parts, ...} @ inputs: let
