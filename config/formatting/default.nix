@@ -4,7 +4,16 @@
   lib,
   config,
   ...
-}: {
+}: let
+  sql-formatter-substituted = pkgs.writeShellScriptBin "sql-formatter-wrapped" ''
+    fileName="$1"
+    if [[ ! -f "$fileName" ]]; then
+      echo "file: $fileName is not exists!"
+      exit 1
+    fi
+    cat "$fileName" | sed 's/@/__dog_substituter__/g' | ${lib.getExe pkgs.sql-formatter} -l postgresql | sed 's/__dog_substituter__/@/g'
+  '';
+in {
   options = {
     autopep8.experimental.enable = lib.mkEnableOption "experimental";
     format.on_save.enable = lib.mkEnableOption "format on save";
@@ -37,13 +46,13 @@
                 )
               ];
             })
-            // (lib.optionalAttrs (config.nix.enable || config.all-langs.enable) {
+            // (lib.optionalAttrs config.nix.enable {
               nix = ["alejandra"];
             })
-            // (lib.optionalAttrs (config.tex.enable || config.all-langs.enable) {
+            // (lib.optionalAttrs config.tex.enable {
               latex = ["tex-fmt"];
             })
-            // (lib.optionalAttrs (config.lua.enable || config.all-langs.enable) {
+            // (lib.optionalAttrs config.lua.enable {
               lua = ["stylua"];
             })
             // rec {
@@ -59,8 +68,15 @@
               typescriptreact = xml;
               css = xml;
               html = xml;
-            };
+            }
+            // (lib.optionalAttrs config.sql.enable {
+              sql = ["sql-formatter"];
+            });
           formatters = {
+            sql-formatter = {
+              command = "${lib.getExe sql-formatter-substituted}";
+              args = ["$FILENAME"];
+            };
             autopep8Experimental = {
               "inherit" = false;
               command = "autopep8";
@@ -85,11 +101,12 @@
 
     extraPackages = with pkgs; (
       [prettier]
-      ++ (lib.optionals (config.python.enable || config.all-langs.enable) [isort black python3Packages.autopep8])
-      ++ (lib.optional (config.lua.enable || config.all-langs.enable) stylua)
-      ++ (lib.optional (config.cpp.enable || config.all-langs.enable) clang-tools)
-      ++ (lib.optional (config.nix.enable || config.all-langs.enable) alejandra)
-      ++ (lib.optional (config.tex.enable || config.all-langs.enable) tex-fmt)
+      ++ (lib.optionals config.python.enable [isort black python3Packages.autopep8])
+      ++ (lib.optional config.lua.enable stylua)
+      ++ (lib.optional config.cpp.enable clang-tools)
+      ++ (lib.optional config.nix.enable alejandra)
+      ++ (lib.optional config.tex.enable tex-fmt)
+      ++ (lib.optional config.sql.enable sql-formatter)
     );
   };
 }

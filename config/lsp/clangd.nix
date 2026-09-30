@@ -14,7 +14,7 @@
       default = false;
     };
   };
-  config = lib.mkIf (config.cpp.enable || config.all-langs.enable) {
+  config = lib.mkIf config.cpp.enable {
     plugins.lsp.servers.clangd = {
       enable = true;
       cmd =

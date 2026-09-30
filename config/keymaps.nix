@@ -1,4 +1,8 @@
-{keyLib, lib, ...}: {
+{
+  keyLib,
+  lib,
+  ...
+}: {
   keymaps = with keyLib; [
     (baseDesc "<leader>pm" "<cmd>messages<cr>" "(misc) messages")
     (baseDesc "ZZ" "<cmd>wqa<cr>" "Quit (save before)")

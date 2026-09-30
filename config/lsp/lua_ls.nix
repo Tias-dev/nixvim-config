@@ -5,7 +5,7 @@
   ...
 }: {
   config =
-    lib.mkIf (config.lua.enable || config.all-langs.enable)
+    lib.mkIf config.lua.enable
     {
       plugins.lsp.servers.lua_ls.enable = true;
       extraPackages = [pkgs.lua-language-server];

@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  config = lib.mkIf (config.nix.enable || config.all-langs.enable) {
+  config = lib.mkIf config.nix.enable {
     plugins.lsp.servers.nixd = {
       enable = true;
       cmd = ["nixd"];
