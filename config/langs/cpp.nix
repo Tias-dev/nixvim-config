@@ -1,9 +1,9 @@
 {lib, ...}: {
   options.cpp = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-    };
+    enable = lib.mkEnableOption "C/C++ integration";
     indent-namespace = lib.mkEnableOption "indent for namespace";
+  };
+  config = {
+    cpp.enable = lib.mkDefault true;
   };
 }

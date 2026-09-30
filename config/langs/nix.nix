@@ -1,6 +1,4 @@
 {lib, ...}: {
-  options.nix.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-  };
+  options.nix.enable = lib.mkEnableOption "nix integration";
+  config.nix.enable = lib.mkDefault true;
 }

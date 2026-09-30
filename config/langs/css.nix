@@ -1,6 +1,7 @@
 {lib, config,...}: {
   options.css.enable = lib.mkEnableOption "css support";
-  config = lib.mkIf config.css.enable {
-    plugins.colorizer.enable = true;
+  config =  {
+    plugins = lib.mkIf config.css.enable { colorizer.enable = true; };
+    css.enable = lib.mkDefault (false || config.all-langs.enable);
   };
 }
