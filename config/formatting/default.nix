@@ -6,12 +6,7 @@
   ...
 }: let
   sql-formatter-substituted = pkgs.writeShellScriptBin "sql-formatter-wrapped" ''
-    fileName="$1"
-    if [[ ! -f "$fileName" ]]; then
-      echo "file: $fileName is not exists!"
-      exit 1
-    fi
-    cat "$fileName" | sed 's/@/__dog_substituter__/g' | ${lib.getExe pkgs.sql-formatter} -l postgresql | sed 's/__dog_substituter__/@/g'
+    sed 's/@/__dog_substituter__/g' | ${lib.getExe pkgs.sql-formatter} -l postgresql | sed 's/__dog_substituter__/@/g'
   '';
 in {
   options = {
@@ -75,12 +70,11 @@ in {
           formatters = {
             sql-formatter = {
               command = "${lib.getExe sql-formatter-substituted}";
-              args = ["$FILENAME"];
             };
             autopep8Experimental = {
               "inherit" = false;
               command = "autopep8";
-              args = ["--experimental" "$FILENAME"];
+              args = ["--experimental" "-"];
             };
           };
         }
