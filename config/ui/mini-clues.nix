@@ -78,6 +78,11 @@
           keys = "<leader>n";
           desc = "+Neogen";
         }
+        {
+          mode = "n";
+          keys = "<leader>u";
+          desc = "+UI";
+        }
       ];
     };
   };

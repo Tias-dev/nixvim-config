@@ -36,6 +36,7 @@
     defaultModules = (inputs.import-tree ./config {}).imports;
   in
     flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
+
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       flake.lib = rec {
         neovimWithOverrides = system: extraModules:
