@@ -13,7 +13,6 @@
       enable = true;
       settings = {
         appearance = {
-          # use_nvim_cmp_as_default = true;
           nerd_font_variant = "mono";
         };
         sources = {
@@ -26,10 +25,20 @@
           providers = {
             lsp = {
               timeout_ms = 10;
+              fallbacks = [];
             };
             path = {
               min_keyword_length = 0;
               score_offset = 3;
+            };
+            buffer = {
+              opts = {
+                get_bufnrs = lib.nixvim.mkRaw ''
+                  function()
+                    return vim.api.nvim_list_bufs()
+                  end
+                '';
+              };
             };
           };
         };
