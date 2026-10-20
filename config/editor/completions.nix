@@ -24,7 +24,6 @@
           ];
           providers = {
             lsp = {
-              timeout_ms = 10;
               fallbacks = [];
             };
             path = {
