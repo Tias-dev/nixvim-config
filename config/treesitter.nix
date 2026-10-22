@@ -25,7 +25,7 @@
       ]
       ++ (lib.optionals config.lua.enable [lua])
       ++ (lib.optionals config.python.enable [python])
-      ++ (lib.optionals config.frontend.enable [html css xml javascript typescript jsx tsx])
+      ++ (lib.optionals config.frontend.enable [html css xml javascript typescript])
       ++ (lib.optionals config.tex.enable [latex])
       ++ (lib.optionals config.cpp.enable [make c cpp])
       ++ (lib.optionals config.sql.enable [sql]);
