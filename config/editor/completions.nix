@@ -9,38 +9,12 @@
   };
   config = {
     completion.blink-cmp.enable = lib.mkDefault (!config.completion.mini-completion.enable);
+    plugins.mini-completion = lib.optionalAttrs config.completion.mini-completion.enable {
+      enable = true;
+    };
     plugins.blink-cmp = lib.optionalAttrs config.completion.blink-cmp.enable {
       enable = true;
       settings = {
-        appearance = {
-          nerd_font_variant = "mono";
-        };
-        sources = {
-          default = [
-            "lsp"
-            "snippets"
-            "path"
-            "buffer"
-          ];
-          providers = {
-            lsp = {
-              fallbacks = [];
-            };
-            path = {
-              min_keyword_length = 0;
-              score_offset = 3;
-            };
-            buffer = {
-              opts = {
-                get_bufnrs = lib.nixvim.mkRaw ''
-                  function()
-                    return vim.api.nvim_list_bufs()
-                  end
-                '';
-              };
-            };
-          };
-        };
         keymap = {
           preset = "default";
           "<Tab>" = ["accept" "fallback"];
@@ -75,10 +49,44 @@
           enabled = true;
           window.border = "single";
         };
+        appearance = {
+          nerd_font_variant = "mono";
+        };
+        sources = {
+          default = [
+            "lsp"
+            "snippets"
+            "path"
+            "buffer"
+          ];
+          providers = {
+            lsp = {
+              fallbacks = [];
+              min_keyword_length = 1;
+              score_offset = 100;
+            };
+            snippets = {
+              min_keyword_length = 2;
+              score_offset = 80;
+            };
+            path = {
+              min_keyword_length = 0;
+              score_offset = 50;
+            };
+            buffer = {
+              min_keyword_length = 4;
+              score_offset = 10;
+              opts = {
+                get_bufnrs = lib.nixvim.mkRaw ''
+                  function()
+                    return vim.api.nvim_list_bufs()
+                  end
+                '';
+              };
+            };
+          };
+        };
       };
-    };
-    plugins.mini-completion = lib.optionalAttrs config.completion.mini-completion.enable {
-      enable = true;
     };
   };
 }
