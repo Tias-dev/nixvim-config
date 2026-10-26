@@ -27,6 +27,7 @@
           trigger = {
             show_on_keyword = true;
             show_on_trigger_character = true;
+            show_on_insert_on_trigger_charactera = true;
             show_on_backspace_in_keyword = true;
           };
           keyword.range = "full";
@@ -62,7 +63,7 @@
           providers = {
             lsp = {
               fallbacks = [];
-              min_keyword_length = 1;
+              min_keyword_length = 0;
               score_offset = 100;
             };
             snippets = {
