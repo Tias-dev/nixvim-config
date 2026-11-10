@@ -68,10 +68,10 @@ in {
               sql = ["sql-formatter"];
             });
           formatters = {
-            sql-formatter = {
+            sql-formatter = lib.mkIf config.sql.enable {
               command = "${lib.getExe sql-formatter-substituted}";
             };
-            autopep8Experimental = {
+            autopep8Experimental = lib.mkIf config.python.enable {
               "inherit" = false;
               command = "autopep8";
               args = ["--experimental" "-"];
