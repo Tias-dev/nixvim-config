@@ -21,7 +21,7 @@
         vim
         vimdoc
         markdown
-        nix
+        # nix # disabled due to lags on big files
       ]
       ++ (lib.optionals config.lua.enable [lua])
       ++ (lib.optionals config.python.enable [python])
