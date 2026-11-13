@@ -6,7 +6,17 @@
 }: {
   options.arduino.enable = lib.mkEnableOption "Arduino support";
   config = lib.mkIf config.arduino.enable {
-    plugins.lsp.servers.arduino_language_server.enable = true;
+    lsp.servers.arduino_language_server = {
+      enable = true;
+      config = {
+        capabilities = {
+          textDocument.semanticTokens = lib.nixvim.mkRaw "vim.NIL";
+          workspace.semanticTokens = {
+            refreshSupport = false;
+          };
+        };
+      };
+    };
 
     cpp.enable = true;
 
