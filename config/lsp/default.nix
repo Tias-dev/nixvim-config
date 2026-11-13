@@ -7,55 +7,79 @@
       end
       vim.keymap.del("x", "gra")
     '';
-    plugins.lsp = {
-      enable = true;
-      keymaps = {
-        silent = true;
-        diagnostic = {
-          "<leader>cl" = {
-            action = "open_float";
+    lsp = {
+      keymaps = [
+        {
+          action = lib.nixvim.mkRaw "function() vim.diagnostic.open_float() end";
+          key = "<leader>cl";
+          options = {
             desc = "Line Diagnostics";
           };
-          "[d" = {
-            action = "goto_next";
+        }
+        {
+          action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({count=-1, float=true}) end";
+          key = "[d";
+          options = {
+            desc = "Prev Diagnostic";
+          };
+        }
+        {
+          action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({count=1, float=true}) end";
+          key = "]d";
+          options = {
             desc = "Next Diagnostic";
           };
-          "]d" = {
-            action = "goto_prev";
-            desc = "Previous Diagnostic";
-          };
-        };
-        lspBuf = {
-          gd = {
-            action = "definition";
+        }
+        {
+          lspBufAction = "definition";
+          key = "gd";
+          options = {
             desc = "Goto Definition";
           };
-          gD = {
-            action = "declaration";
+        }
+        {
+          lspBufAction = "declaration";
+          key = "gD";
+          options = {
             desc = "Goto Declaration";
           };
-          gI = {
-            action = "implementation";
+        }
+        {
+          lspBufAction = "implementation";
+          key = "gI";
+          options = {
             desc = "Goto Implementation";
           };
-          gT = {
-            action = "type_definition";
+        }
+        {
+          key = "gT";
+          lspBufAction = "type_definition";
+          options = {
             desc = "Type Definition";
           };
-          K = {
-            action = "hover";
+        }
+        {
+          lspBufAction = "hover";
+          key = "K";
+          options = {
             desc = "Hover";
           };
-          "<leader>cr" = {
-            action = "rename";
+        }
+        {
+          lspBufAction = "rename";
+          key = "<leader>cr";
+          options = {
             desc = "Rename";
           };
-          "<leader>ca" = {
-            action = "code_action";
+        }
+        {
+          lspBufAction = "code_action";
+          key = "<leader>ca";
+          options = {
             desc = "Code actions";
           };
-        };
-      };
+        }
+      ];
     };
   };
 }

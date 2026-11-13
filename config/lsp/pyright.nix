@@ -5,7 +5,7 @@
   ...
 }: {
   config = lib.mkIf config.python.enable {
-    plugins.lsp.servers.pyright.enable = true;
+    lsp.servers.pyright.enable = true;
     extraPackages = [pkgs.pyright];
   };
 }

@@ -5,7 +5,7 @@
   ...
 }: {
   config = lib.mkIf config.tex.enable {
-    plugins.lsp.servers.texlab.enable = true;
+    lsp.servers.texlab.enable = true;
     extraPackages = [pkgs.texlab];
   };
 }

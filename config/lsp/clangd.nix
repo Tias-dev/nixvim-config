@@ -15,22 +15,24 @@
     };
   };
   config = lib.mkIf config.cpp.enable {
-    plugins.lsp.servers.clangd = {
+    lsp.servers.clangd = {
       enable = true;
-      cmd =
-        [
-          "clangd"
-          "--clang-tidy"
-          "--completion-style=detailed"
-          "--function-arg-placeholders"
-          "--fallback-style=llvm"
-          "--header-insertion=${
-            if config.clangd.disable-auto-import
-            then "never"
-            else "iwyu"
-          }"
-        ]
-        ++ (lib.optional config.clangd.disable-indexing "--background-index=0");
+      config = {
+        cmd =
+          [
+            "clangd"
+            "--clang-tidy"
+            "--completion-style=detailed"
+            "--function-arg-placeholders"
+            "--fallback-style=llvm"
+            "--header-insertion=${
+              if config.clangd.disable-auto-import
+              then "never"
+              else "iwyu"
+            }"
+          ]
+          ++ (lib.optional config.clangd.disable-indexing "--background-index=0");
+      };
     };
     extraPackages = [pkgs.clang-tools];
   };

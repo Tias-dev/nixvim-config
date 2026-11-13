@@ -7,6 +7,6 @@
   config =
     lib.mkIf config.frontend.enable
     {
-      plugins.lsp.servers.html.enable = true;
+      lsp.servers.html.enable = true;
     };
 }
