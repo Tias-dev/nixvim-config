@@ -43,7 +43,7 @@
     exrc = true;
     mouse = "";
     number = true;
-    scrolloff = 10;
+    scrolloff = 3;
     relativenumber = true;
     completeopt = "menu,menuone,noselect";
     signcolumn = "number";
